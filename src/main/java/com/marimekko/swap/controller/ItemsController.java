@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "*")
 public class ItemsController {
     private final ItemsService itemsService;
     private final ProfileService profileService;

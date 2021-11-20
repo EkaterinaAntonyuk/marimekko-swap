@@ -33,7 +33,7 @@
         })
 
         function book(id, flowers, button) {
-            fetch("http://localhost:8080/book/" + id, {
+            fetch("https://marimekko-swap.herokuapp.com/book/" + id, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'}
             }).then(res => {
