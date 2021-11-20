@@ -14,6 +14,10 @@ public class ProfileController {
     public ProfileController(ProfileService profileService) {
         this.profileService = profileService;
     }
+    @GetMapping
+    public String index() {
+        return "redirect:/profile";
+    }
 
     @GetMapping("/profile")
     public String getProfile(Model model, HttpSession session) {

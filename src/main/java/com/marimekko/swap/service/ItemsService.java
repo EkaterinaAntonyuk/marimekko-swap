@@ -84,12 +84,10 @@ public class ItemsService {
         Schedule schedule;
         if (first.isEmpty()) {
             schedule = new Schedule(user, item,
-                    Instant.now().atZone(ZoneId.of("UTC")).plus(1, ChronoUnit.MONTHS).toInstant(),
-                    new Location("", 0.0, 0.0));
+                    Instant.now().atZone(ZoneId.of("UTC")).plus(1, ChronoUnit.MONTHS).toInstant());
         } else {
             schedule = new Schedule(user, item,
-                    first.get().getMonthOfUsage().atZone(ZoneId.of("UTC")).plus(1, ChronoUnit.MONTHS).toInstant(),
-                    new Location("", 0.0, 0.0));
+                    first.get().getMonthOfUsage().atZone(ZoneId.of("UTC")).plus(1, ChronoUnit.MONTHS).toInstant());
         }
 
 

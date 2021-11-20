@@ -76,11 +76,11 @@
                                         <h3 th:text="${bookedItem.item.name}"></h3>
                                         <p class="text-muted"
                                            th:text="'Pick up from ' + ${@viewUtil.toFirstDayOfMonth(bookedItem.monthOfUsage)}">
-                                            Pick up at </p>
+                                        </p>
                                         <a class="text-dark" target="_blank"
                                            th:href="'http://maps.google.com/maps?z=12&t=m&q=loc:' + ${bookedItem.location.lat} + '+' + ${bookedItem.location.lng}">
                                             <i class="bi bi-geo-alt"></i> Pick up at <span
-                                                th:text="${bookedItem.location.name}"></span></a>
+                                                th:text="${bookedItem.location.locationName}"></span></a>
                                     </div>
                                 </div>
                             </div>

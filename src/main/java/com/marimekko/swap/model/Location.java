@@ -11,7 +11,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Getter
 public class Location {
-    private String name;
+    private String locationName;
     private Double lat;
     private Double lng;
 }

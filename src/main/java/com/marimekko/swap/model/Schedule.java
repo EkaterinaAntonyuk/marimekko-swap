@@ -24,10 +24,10 @@ public class Schedule {
     @Embedded
     private Location location;
 
-    public Schedule(User user, Item item, Instant monthOfUsage, Location location) {
+    public Schedule(User user, Item item, Instant monthOfUsage) {
         this.user = user;
         this.item = item;
         this.monthOfUsage = monthOfUsage;
-        this.location = location;
+        this.location = item.getLocation();
     }
 }
