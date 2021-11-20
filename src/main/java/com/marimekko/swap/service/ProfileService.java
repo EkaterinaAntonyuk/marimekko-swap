@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.YearMonth;
 import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class ProfileService {
                     final Instant monthOfUsage = schedule.getMonthOfUsage();
                     final YearMonth yearMonth = YearMonth.from(monthOfUsage.atZone(ZoneId.systemDefault()));
                     return yearMonth.isAfter(YearMonth.now());
-                }).collect(Collectors.toList());
+                }).sorted(Comparator.comparing(Schedule::getMonthOfUsage)).collect(Collectors.toList());
         return new ProfileDto(user, currentItems, bookedItems);
 
     }
