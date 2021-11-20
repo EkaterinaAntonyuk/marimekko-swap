@@ -1,5 +1,6 @@
 package com.marimekko.swap.controller;
 
+import com.marimekko.swap.dto.FiltersDto;
 import com.marimekko.swap.model.ItemType;
 import com.marimekko.swap.service.ItemsService;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,16 @@ public class ItemsController {
     @GetMapping("/explore")
     public String getFilteredItems(Model model, @RequestParam(required = false) ItemType itemType,
                                    @RequestParam(required = false) List<String> sizes,
-                                   @RequestParam(defaultValue = "false") Boolean isAvailableNextMonth){
-        if (itemType == null && sizes == null && !isAvailableNextMonth){
+                                   @RequestParam(defaultValue = "false") Boolean isAvailableNextMonth) {
+        final FiltersDto filters = new FiltersDto(
+                itemType,
+                sizes,
+                isAvailableNextMonth
+        );
+        model.addAttribute("filters", filters);
+        if (itemType == null && sizes == null && !isAvailableNextMonth) {
             model.addAttribute("items", itemsService.getAllItems());
-        }
-        else {
+        } else {
             model.addAttribute("items", itemsService.getFilteredItems(itemType, sizes, isAvailableNextMonth));
         }
         return "items";

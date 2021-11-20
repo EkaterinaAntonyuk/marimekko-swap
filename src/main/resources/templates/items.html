@@ -19,10 +19,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
     <link href="css/style.css" rel="stylesheet">
+
+    <script>
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker();
+        })
+    </script>
 
 </head>
 <body>
@@ -59,33 +68,60 @@
                 </div>
                 <div id="filters" class="collapse">
                     <!--                    <div class="row">-->
-                    <div class="form-inline mt-3">
-                        <div class="form-row">
+                    <div class="mt-3">
+                        <form th:action="@{/explore}" method="get">
                             <div class="row">
-                            <div class="col-xs-12 col-md-4">
-                                <select class="form-select form-control" aria-label="Default select example">
-                                    <option selected>Category</option>
-                                    <option value="1">Clothing</option>
-                                    <option value="2">Bags</option>
-                                    <option value="3">Accessories</option>
-                                </select>
+                                <div class="col-xs-12 col-md-3">
+                                    <div class="form-group">
+                                        <select th:field=*{filters.itemType} title="Category" data-width="100%" name="category"
+                                                class="form-control selectpicker">
+                                            <option th:value="CLOTHING">Clothing</option>
+                                            <option th:value="BAGS">Bags</option>
+                                            <option th:value="ACCESSORIES">Accessories</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <div class="form-group">
+                                        <select title="Sizes" name="sizes" multiple
+                                                class="form-control selectpicker">
+                                            <optgroup label="Clothes">
+                                                <option th:selected="${filters.sizes.contains('XXS')}" values="XXS">XXS</option>
+                                                <option th:selected="${filters.sizes.contains('XS')}" values="XS">XS</option>
+                                                <option th:selected="${filters.sizes.contains('S')}" values="S">S</option>
+                                                <option th:selected="${filters.sizes.contains('M')}" values="M">M</option>
+                                                <option th:selected="${filters.sizes.contains('L')}" values="L">L</option>
+                                                <option th:selected="${filters.sizes.contains('XL')}" values="XL">XL</option>
+                                                <option th:selected="${filters.sizes.contains('XXL')}" values="XXL">XXL</option>
+                                                <option th:selected="${filters.sizes.contains('XXXL')}" values="XXXL">XXXL</option>
+                                            </optgroup>
+                                            <optgroup label="Boots">
+                                                <option th:selected="${filters.sizes.contains('36')}" values="36">36</option>
+                                                <option th:selected="${filters.sizes.contains('37')}" values="37">37</option>
+                                                <option th:selected="${filters.sizes.contains('38')}" values="38">38</option>
+                                                <option th:selected="${filters.sizes.contains('39')}" values="39">39</option>
+                                                <option th:selected="${filters.sizes.contains('40')}" values="40">40</option>
+                                                <option th:selected="${filters.sizes.contains('41')}" values="41">41</option>
+                                                <option th:selected="${filters.sizes.contains('42')}" values="42">42</option>
+                                                <option th:selected="${filters.sizes.contains('43')}" values="43">43</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <div class="form-group">
+                                    <select title="Availability" name="isAvailableNextMonth" class="form-control selectpicker">
+                                        <option th:selected="${!filters.isAvailableNextMonth()}"value="false">All</option>
+                                        <option th:selected="${filters.isAvailableNextMonth()}" value="true">Upcoming month</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-3">
+                                    <input class="btn btn-dark" type="submit" value="Apply">
+                                </div>
                             </div>
-                            <div class="col-xs-12 col-md-4">
-                                <select class="form-select form-control" aria-label="Default select example">
-                                    <option selected>Sizes</option>
-                                    <option value="1">Clothing</option>
-                                    <option value="2">Bags</option>
-                                    <option value="3">Accessories</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-12 col-md-4">
-                                <select class="form-select form-control" aria-label="Default select example">
-                                    <option selected>Availability</option>
-                                    <option value="1">Upcoming month</option>
-                                </select>
-                            </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -96,7 +132,7 @@
                         <img class="group list-group-image card-img-top" th:src="${item.item.pictureUrl}"
                              alt=""/>
                         <div class="caption card-body">
-                            <h4 class="group card-title inner list-group-item-heading" th:text="${item.item.name}"></h4>
+                            <h4 class="group card-title inner list-group-item-heading" th:text="${item.item.name} + ', ' + ${item.item.itemSize}"></h4>
                             <p class="group cart-subtitle text-muted"
                                th:text="'Available on ' + ${@viewUtil.toMonth(item.availableMonth)}">Available on</p>
                             <div class="row w-100">

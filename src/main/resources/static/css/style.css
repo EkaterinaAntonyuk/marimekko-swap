@@ -75,3 +75,9 @@
         display: block;
     }
 }
+
+.bootstrap-select .btn {
+    background-color: white;
+    min-height: 38px;
+    border: 1px solid #ced4da
+}
