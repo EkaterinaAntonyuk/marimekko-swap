@@ -11,7 +11,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     @Query("SELECT new com.marimekko.swap.dto.ItemAvailabilityDto(i, s.monthOfUsage) " +
             "FROM Item i " +
             "LEFT JOIN Schedule s ON s.item.id = i.id " +
-            "WHERE i.demoUserId = :demoUserId " +
+            "WHERE i.demoUserId = :demoUserId AND i.ownerId <> :demoUserId " +
             "AND (s is null OR s.id = (" +
             "SELECT ss.id from Schedule ss where ss.item.id = i.id AND ss.user.id <> :demoUserId "+
             "and ss.monthOfUsage = (select max(sss.monthOfUsage) from Schedule sss where sss.item.id = i.id)))")

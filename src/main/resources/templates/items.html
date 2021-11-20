@@ -25,18 +25,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="css/style.css" rel="stylesheet">
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function () {
             $('.selectpicker').selectpicker();
         })
 
-        function book(id, button) {
+        function book(id, flowers, button) {
             fetch("http://localhost:8080/book/" + id, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'}
             }).then(res => {
-                if(res.status == 400) {
-                    alert("You have already booked 3 items for this month.")
+                if(res.status === 400) {
+                    text = flowers > 0 ? "You have already booked " + flowers + " items for this month."
+                        : "It seems like you've taken away all your clothes from Marimekko Swap. It is not possible to" +
+                        " get other people's clothes while you don't bring something."
+                    Swal.fire({
+                        title: 'Ouch!',
+                        text: text,
+                        icon: 'warning',
+                        iconColor: '#000',
+                        confirmButtonColor: '#000',
+                        confirmButtonText: 'Ok'
+                    })
                 } else {
                     button.value = "Booked"
                     button.disabled = true
@@ -178,7 +190,7 @@
                                 <!--                                        <p class="lead">Can be </p>-->
                                 <!--                                    </div>-->
                                 <div class="col-xs-12 col-md-12 mt-3">
-                                    <button class="btn btn-dark" th:onClick="'book(' + ${item.item.id} + ', this)'">Book</button>
+                                    <button class="btn btn-dark" th:onClick="'book(' + ${item.item.id} + ',' + ${user.flowers} + ', this)'">Book</button>
                                 </div>
                             </div>
                         </div>
