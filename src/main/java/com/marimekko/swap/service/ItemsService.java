@@ -48,7 +48,7 @@ public class ItemsService {
                         include = item.getItemType().equals(itemType);
                     }
                     if (include && sizes != null && sizes.size() > 0) {
-                        include = sizes.contains(item.getItemSize());
+                        include = sizes.contains(item.getItemSize()) || item.getItemSize().equals("One size");
                     }
                     if (include && isAvailable) {
                         include = getMonthsBetweenInstants(Instant.now(), itemAvailabilityDto.getAvailableMonth()) == 1;
