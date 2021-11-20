@@ -72,6 +72,7 @@ public class DemoUserGenerator {
         schedules.add(new Schedule(fake, items.get(6), monthsFromNow(1)));
         schedules.add(new Schedule(fake, items.get(7), monthsFromNow(1)));
         schedules.add(new Schedule(fake, items.get(8), monthsFromNow(2)));
+        schedules.add(new Schedule(fake, items.get(2), monthsFromNow(1)));
         scheduleRepository.saveAll(schedules);
         return schedules;
     }
