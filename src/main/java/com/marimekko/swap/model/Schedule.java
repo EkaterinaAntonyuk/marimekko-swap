@@ -2,14 +2,32 @@ package com.marimekko.swap.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.time.Instant;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Entity
 public class Schedule {
-    private final User user;
-    private final Item item;
-    private final Instant monthOfUsage;
-    private final Location location;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
+    private Instant monthOfUsage;
+    @Embedded
+    private Location location;
+
+    public Schedule(User user, Item item, Instant monthOfUsage, Location location) {
+        this.user = user;
+        this.item = item;
+        this.monthOfUsage = monthOfUsage;
+        this.location = location;
+    }
 }

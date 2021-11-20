@@ -1,10 +1,15 @@
 package com.marimekko.swap.model;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Embeddable;
 
 @AllArgsConstructor
+@NoArgsConstructor
+@Embeddable
 public class Location {
-    private final String name;
-    private final Double lat;
-    private final Double lng;
+    private String name;
+    private Double lat;
+    private Double lng;
 }

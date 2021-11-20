@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ProfileController {
     private final ProfileService profileService;
@@ -14,8 +16,8 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public String getProfile(Model model) {
-        model.addAttribute("profile", profileService.getProfile(1));
+    public String getProfile(Model model, HttpSession session) {
+        model.addAttribute("profile", profileService.getProfile((Long) session.getAttribute("user")));
         return "profile";
     }
 }
