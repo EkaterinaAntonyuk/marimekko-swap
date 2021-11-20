@@ -1,27 +1,28 @@
 package com.marimekko.swap.controller;
 
-import com.marimekko.swap.dto.FiltersDto;
-import com.marimekko.swap.model.ItemType;
 import com.marimekko.swap.service.ItemsService;
+import com.marimekko.swap.service.ProfileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class OwnItemsController {
     private final ItemsService itemsService;
+    private final ProfileService profileService;
 
-    public OwnItemsController(ItemsService itemsService) {
+    public OwnItemsController(ItemsService itemsService, ProfileService profileService) {
         this.itemsService = itemsService;
+        this.profileService = profileService;
     }
 
     @GetMapping("/own-clothes")
     public String getFilteredItems(Model model, HttpSession session) {
-        model.addAttribute("items", itemsService.getOwnItems((Long) session.getAttribute("user")));
+        final Long userId = (Long) session.getAttribute("user");
+        model.addAttribute("items", itemsService.getOwnItems(userId));
+        model.addAttribute("user", profileService.getUser(userId));
         return "own-items";
     }
 

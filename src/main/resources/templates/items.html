@@ -25,12 +25,27 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="css/style.css" rel="stylesheet">
 
     <script>
         $(document).ready(function () {
             $('.selectpicker').selectpicker();
         })
+
+        function book(id, button) {
+            fetch("http://localhost:8080/book/" + id, {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'}
+            }).then(res => {
+                if(res.status == 400) {
+                    alert("You have already booked 3 items for this month.")
+                } else {
+                    button.value = "Booked"
+                    button.disabled = true
+                }
+            });
+        }
     </script>
 
 </head>
@@ -40,10 +55,21 @@
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-light border mt-2 static-top">
-                <a class="navbar-brand" href="#"><img class="header__logo-image" loading="lazy"
-                                                      src="https://www.marimekko.com/static/version1637055171/frontend/Improove/marimekko2/fi_FI/images/logo.svg"
-                                                      alt="" width="170" style="margin-bottom: 8px;"> <span
-                        style="margin-left: 5px; font-weight: lighter;">Swap</span></a>
+                <a class="d-none d-lg-block navbar-brand" href="#"><img class="header__logo-image" loading="lazy"
+                                                                        src="https://www.marimekko.com/static/version1637055171/frontend/Improove/marimekko2/fi_FI/images/logo.svg"
+                                                                        alt="" width="170" style="margin-bottom: 8px;">
+                    <span
+                            style="margin-left: 5px; font-weight: lighter;">Swap</span></a>
+                <div class="d-sm-block d-lg-none">
+                    <div class="float-left">
+                        <a th:href="@{/profile}" class="text-dark h3"><i class="bi bi-person"></i></a>
+                    </div>
+                    <div class="float-left ml-3">
+                        <a th:href="@{/own-clothes}" class="text-dark"><img width="38px"
+                                                                            th:src="@{/mlogo.jpeg}"></i>
+                        </a><span style="margin-left: 5px; font-weight: bold" th:text="${user.flowers}"></span>
+                    </div>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +82,16 @@
                             <a class="nav-link" th:href="@{/explore}">Explore</a>
                         </li>
                     </ul>
+                    <div class="d-none d-lg-inline">
+                        <div class="float-left">
+                            <a th:href="@{/profile}" class="text-dark h3"><i class="bi bi-person"></i></a>
+                        </div>
+                        <div class="float-left ml-3">
+                            <a th:href="@{/own-clothes}" class="text-dark"><img width="38px"
+                                                                                th:src="@{/mlogo.jpeg}"></i>
+                            </a><span style="margin-left: 5px; font-weight: bold" th:text="${user.flowers}"></span>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <!--   CONTENT   -->
@@ -141,7 +177,7 @@
                                 <!--                                        <p class="lead">Can be </p>-->
                                 <!--                                    </div>-->
                                 <div class="col-xs-12 col-md-12">
-                                    <a class="btn btn-dark" href="http://www.jquery2dotnet.com">Book</a>
+                                    <button class="btn btn-dark" th:onClick="'book(' + ${item.item.id} + ', this)'">Book</button>
                                 </div>
                             </div>
                         </div>

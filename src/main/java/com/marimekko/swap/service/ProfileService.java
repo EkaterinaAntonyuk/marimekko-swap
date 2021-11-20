@@ -45,4 +45,8 @@ public class ProfileService {
                 }).sorted(Comparator.comparing(Schedule::getMonthOfUsage)).collect(Collectors.toList());
         return new ProfileDto(user, currentItems, bookedItems);
     }
+
+    public User getUser(Long userId) {
+        return userRepository.findById(userId).orElseThrow();
+    }
 }

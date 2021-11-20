@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -21,10 +23,21 @@
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-expand-lg navbar-light border mt-2 static-top">
-                <a class="navbar-brand" href="#"><img class="header__logo-image" loading="lazy"
-                                                      src="https://www.marimekko.com/static/version1637055171/frontend/Improove/marimekko2/fi_FI/images/logo.svg"
-                                                      alt="" width="170" style="margin-bottom: 8px;"> <span
-                        style="margin-left: 5px; font-weight: lighter;">Swap</span></a>
+                <a class="d-none d-lg-block navbar-brand" href="#"><img class="header__logo-image" loading="lazy"
+                                                                        src="https://www.marimekko.com/static/version1637055171/frontend/Improove/marimekko2/fi_FI/images/logo.svg"
+                                                                        alt="" width="170" style="margin-bottom: 8px;">
+                    <span
+                            style="margin-left: 5px; font-weight: lighter;">Swap</span></a>
+                <div class="d-sm-block d-lg-none">
+                    <div class="float-left">
+                        <a th:href="@{/profile}" class="text-dark h3"><i class="bi bi-person"></i></a>
+                    </div>
+                    <div class="float-left ml-3">
+                        <a th:href="@{/own-clothes}" class="text-dark"><img width="38px"
+                                                                            th:src="@{/mlogo.jpeg}"></i>
+                        </a><span style="margin-left: 5px; font-weight: bold" th:text="${profile.user.flowers}"></span>
+                    </div>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -37,11 +50,44 @@
                             <a class="nav-link" th:href="@{/explore}">Explore</a>
                         </li>
                     </ul>
+                    <div class="d-none d-lg-inline">
+                        <div class="float-left">
+                            <a th:href="@{/profile}" class="text-dark h3"><i class="bi bi-person"></i></a>
+                        </div>
+                        <div class="float-left ml-3">
+                            <a th:href="@{/own-clothes}" class="text-dark"><img width="38px"
+                                                                                th:src="@{/mlogo.jpeg}"></i>
+                            </a><span style="margin-left: 5px; font-weight: bold" th:text="${profile.user.flowers}"></span>
+                        </div>
+                    </div>
                 </div>
             </nav>
             <div class="m-2">
                 <div class="row">
                     <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Booked items</h3>
+                                <div th:each="bookedItem : ${profile.bookedItems}" class="row p-2">
+                                    <div class="col-md-3">
+                                        <img class="img-thumbnail" th:src="${bookedItem.item.pictureUrl}">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h3 th:text="${bookedItem.item.name}"></h3>
+                                        <p class="text-muted"
+                                           th:text="'Pick up from ' + ${@viewUtil.toFirstDayOfMonth(bookedItem.monthOfUsage)}">
+                                            Pick up at </p>
+                                        <a class="text-dark" target="_blank"
+                                           th:href="'http://maps.google.com/maps?z=12&t=m&q=loc:' + ${bookedItem.location.lat} + '+' + ${bookedItem.location.lng}">
+                                            <i class="bi bi-geo-alt"></i> Pick up at <span
+                                                th:text="${bookedItem.location.name}"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">Current items</h3>
@@ -59,28 +105,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">Booked items</h3>
-                                <div th:each="bookedItem : ${profile.bookedItems}" class="row p-2">
-                                    <div class="col-md-3">
-                                        <img class="img-thumbnail" th:src="${bookedItem.item.pictureUrl}">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h3 th:text="${bookedItem.item.name}"></h3>
-                                        <p class="text-muted"
-                                           th:text="'Pick up from ' + ${@viewUtil.toFirstDayOfMonth(bookedItem.monthOfUsage)}">Pick up at </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <a th:href="@{/restart}" class="text-dark text-muted">Restart the demo</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

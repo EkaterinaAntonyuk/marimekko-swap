@@ -20,4 +20,10 @@ public class ProfileController {
         model.addAttribute("profile", profileService.getProfile((Long) session.getAttribute("user")));
         return "profile";
     }
+
+    @GetMapping("/restart")
+    public String restart(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/profile";
+    }
 }

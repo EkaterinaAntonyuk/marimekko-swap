@@ -67,13 +67,20 @@ public class DemoUserGenerator {
     }
 
     private List<Schedule> generateSchedules(User user, List<Item> items) {
+        final User fake = new User("fake", 10);
+        userRepository.save(fake);
         List<Schedule> schedules = new ArrayList<>();
         schedules.add(new Schedule(user, items.get(0), monthsFromNow(0), ESPOO_SELLO));
         schedules.add(new Schedule(user, items.get(1), monthsFromNow(0), ESPOO_SELLO));
         schedules.add(new Schedule(user, items.get(2), monthsFromNow(0), ESPOO_SELLO));
         schedules.add(new Schedule(user, items.get(3), monthsFromNow(1), ESPOO_SELLO));
         schedules.add(new Schedule(user, items.get(4), monthsFromNow(1), ESPOO_SELLO));
-        schedules.add(new Schedule(user, items.get(5), monthsFromNow(2), ESPOO_SELLO));
+        schedules.add(new Schedule(user, items.get(5), monthsFromNow(1), ESPOO_SELLO));
+        schedules.add(new Schedule(fake, items.get(6), monthsFromNow(0), ESPOO_SELLO));
+        schedules.add(new Schedule(fake, items.get(7), monthsFromNow(1), ESPOO_SELLO));
+        schedules.add(new Schedule(fake, items.get(8), monthsFromNow(0), ESPOO_SELLO));
+        schedules.add(new Schedule(fake, items.get(9), monthsFromNow(1), ESPOO_SELLO));
+        schedules.add(new Schedule(fake, items.get(10), monthsFromNow(1), ESPOO_SELLO));
         scheduleRepository.saveAll(schedules);
         return schedules;
     }
