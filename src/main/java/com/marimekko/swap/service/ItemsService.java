@@ -29,4 +29,8 @@ public class ItemsService {
                 .sorted(Comparator.comparing(ItemAvailabilityDto::getAvailableMonth))
                 .collect(Collectors.toList());
     }
+
+    public List<Item> getOwnItems(int userId) {
+        return itemsRepository.getItemsByOwnerId(userId);
+    }
 }

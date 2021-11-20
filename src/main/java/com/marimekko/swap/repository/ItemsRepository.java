@@ -46,4 +46,12 @@ public class ItemsRepository {
                 Instant.parse("2021-12-23T17:14:00.092812Z")));
         return items;
     }
+
+    public List<Item> getItemsByOwnerId(int userId) {
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Shoes", ItemType.ACCESSORIES, "39"));
+        items.add(new Item("Bag", ItemType.BAGS, "One size"));
+        items.add(new Item("Bag", ItemType.BAGS, "One size"));
+        return items;
+    }
 }
