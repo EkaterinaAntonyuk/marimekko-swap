@@ -3,6 +3,7 @@ package com.marimekko.swap.dto;
 import com.marimekko.swap.model.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 
@@ -10,5 +11,6 @@ import java.time.Instant;
 @Getter
 public class ItemAvailabilityDto {
     private final Item item;
-    private final Instant availableMonth;
+    @Setter
+    private Instant availableMonth;
 }

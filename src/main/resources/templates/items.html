@@ -132,7 +132,7 @@
                         <img class="group list-group-image card-img-top" th:src="${item.item.pictureUrl}"
                              alt=""/>
                         <div class="caption card-body">
-                            <h4 class="group card-title inner list-group-item-heading" th:text="${item.item.name} + ', ' + ${item.item.itemSize}"></h4>
+                            <h4 class="group card-title inner list-group-item-heading" th:text="${item.item.name} + (${item.item.itemSize.equals('One size')} ? '' : ', ' + ${item.item.itemSize})"></h4>
                             <p class="group cart-subtitle text-muted"
                                th:text="'Available on ' + ${@viewUtil.toMonth(item.availableMonth)}">Available on</p>
                             <div class="row w-100">

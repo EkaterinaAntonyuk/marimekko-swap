@@ -21,12 +21,14 @@ public class Item {
     private ItemType itemType;
     private String itemSize;
     private final String pictureUrl = "https://www.marimekko.com/media/catalog/product/0/9/090273-325_X191655_10_1632898629.jpg?width=822&height=1028&canvas=822:1028&quality=100&bg-color=255,255,255&fit=bounds";
-    private final Integer ownerId=1;
-    private final Integer demoUserId=1;
+    private Long ownerId;
+    private Long demoUserId;
 
-    public Item(String name, ItemType itemType, String itemSize) {
+    public Item(String name, ItemType itemType, String itemSize, Long demoUserId, Long ownerId) {
         this.name = name;
         this.itemType = itemType;
         this.itemSize = itemSize;
+        this.demoUserId = demoUserId;
+        this.ownerId = ownerId;
     }
 }

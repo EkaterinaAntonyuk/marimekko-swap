@@ -31,34 +31,34 @@ public class DemoUserGenerator {
                 3
         ));
 
-        var items = generateItems();
+        var items = generateItems(user);
         generateSchedules(user, items);
         return user.getId();
     }
 
-    private List<Item> generateItems() {
+    private List<Item> generateItems(User user) {
         List<Item> items = new ArrayList<>();
-        items.add(new Item("Dress", ItemType.CLOTHING, "M"));
-        items.add(new Item("Dress", ItemType.CLOTHING, "M"));
-        items.add(new Item("Dress", ItemType.CLOTHING, "M"));
-        items.add(new Item("Dress", ItemType.CLOTHING, "S"));
-        items.add(new Item("Dress", ItemType.CLOTHING, "L"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "37"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "38"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "38"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "39"));
-        items.add(new Item("Bag", ItemType.BAGS, "One size"));
-        items.add(new Item("Bag", ItemType.BAGS, "One size"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "38"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "38"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "39"));
-        items.add(new Item("Bag", ItemType.BAGS, "One size"));
-        items.add(new Item("Bag", ItemType.BAGS, "One size"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "38"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "38"));
-        items.add(new Item("Shoes", ItemType.ACCESSORIES, "39"));
-        items.add(new Item("Bag", ItemType.BAGS, "One size"));
-        items.add(new Item("Bag", ItemType.BAGS, "One size"));
+        items.add(new Item("Dress1", ItemType.CLOTHING, "M", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress2", ItemType.CLOTHING, "M", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress3", ItemType.CLOTHING, "M", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress4", ItemType.CLOTHING, "S", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress5", ItemType.CLOTHING, "L", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes6", ItemType.ACCESSORIES, "37", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes7", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes8", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes9", ItemType.ACCESSORIES, "39", user.getId(), user.getId() - 1));
+        items.add(new Item("Bag10", ItemType.BAGS, "One size", user.getId(), user.getId() - 1));
+        items.add(new Item("Bag11", ItemType.BAGS, "One size", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes12", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes13", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes14", ItemType.ACCESSORIES, "39", user.getId(), user.getId() - 1));
+        items.add(new Item("Bag15", ItemType.BAGS, "One size", user.getId(), user.getId() - 1));
+        items.add(new Item("Bag16", ItemType.BAGS, "One size", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes17", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes18", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
+        items.add(new Item("Shoes19", ItemType.ACCESSORIES, "39", user.getId(), user.getId()));
+        items.add(new Item("Bag20", ItemType.BAGS, "One size", user.getId(), user.getId()));
+        items.add(new Item("Bag21", ItemType.BAGS, "One size", user.getId(), user.getId()));
         itemRepository.saveAll(items);
         return items;
     }

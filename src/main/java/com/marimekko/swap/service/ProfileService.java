@@ -34,13 +34,13 @@ public class ProfileService {
         final List<Schedule> currentItems = userSchedules.stream()
                 .filter(schedule -> {
                     final Instant monthOfUsage = schedule.getMonthOfUsage();
-                    final YearMonth yearMonth = YearMonth.from(monthOfUsage.atZone(ZoneId.systemDefault()));
+                    final YearMonth yearMonth = YearMonth.from(monthOfUsage.atZone(ZoneId.of("UTC")));
                     return yearMonth.equals(YearMonth.now());
                 }).collect(Collectors.toList());
         final List<Schedule> bookedItems = userSchedules.stream()
                 .filter(schedule -> {
                     final Instant monthOfUsage = schedule.getMonthOfUsage();
-                    final YearMonth yearMonth = YearMonth.from(monthOfUsage.atZone(ZoneId.systemDefault()));
+                    final YearMonth yearMonth = YearMonth.from(monthOfUsage.atZone(ZoneId.of("UTC")));
                     return yearMonth.isAfter(YearMonth.now());
                 }).sorted(Comparator.comparing(Schedule::getMonthOfUsage)).collect(Collectors.toList());
         return new ProfileDto(user, currentItems, bookedItems);

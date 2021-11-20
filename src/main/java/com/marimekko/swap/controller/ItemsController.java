@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -19,7 +20,7 @@ public class ItemsController {
     }
 
     @GetMapping("/explore")
-    public String getFilteredItems(Model model, @RequestParam(required = false) ItemType itemType,
+    public String getFilteredItems(Model model, HttpSession httpSession, @RequestParam(required = false) ItemType itemType,
                                    @RequestParam(required = false) List<String> sizes,
                                    @RequestParam(defaultValue = "false") Boolean isAvailableNextMonth) {
         final FiltersDto filters = new FiltersDto(
@@ -29,7 +30,7 @@ public class ItemsController {
         );
         model.addAttribute("filters", filters);
         if (itemType == null && sizes == null && !isAvailableNextMonth) {
-            model.addAttribute("items", itemsService.getAllItems());
+            model.addAttribute("items", itemsService.getAllItems((Long) httpSession.getAttribute("user")));
         } else {
             model.addAttribute("items", itemsService.getFilteredItems(itemType, sizes, isAvailableNextMonth));
         }
