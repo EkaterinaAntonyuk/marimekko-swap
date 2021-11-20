@@ -29,7 +29,7 @@ public class Item {
         this.itemSize = itemSize;
         this.demoUserId = demoUserId;
         this.ownerId = ownerId;
-        this.pictureUrl = "https://www.marimekko.com/media/catalog/product/0/6/065205-353_X192281_10_1631079127.jpg?width=924&height=1156&canvas=924:1156&quality=100&bg-color=255,255,255&fit=bounds";
+        this.pictureUrl = pictureUrl;
         this.location = location;
     }
 }

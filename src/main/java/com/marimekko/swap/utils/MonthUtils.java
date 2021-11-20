@@ -15,6 +15,6 @@ public class MonthUtils {
     }
 
     public static Instant plusMonth(Instant instant, int months) {
-        return Instant.now().atZone(ZoneId.of("UTC")).plus(1, java.time.temporal.ChronoUnit.MONTHS).toInstant();
+        return instant.atZone(ZoneId.of("UTC")).plus(months, java.time.temporal.ChronoUnit.MONTHS).toInstant();
     }
 }
