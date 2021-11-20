@@ -15,7 +15,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String getProfile(Model model) {
-        model.addAttribute(profileService.getProfile(1));
+        model.addAttribute("profile", profileService.getProfile(1));
         return "profile";
     }
 }

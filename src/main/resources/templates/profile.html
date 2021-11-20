@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 4, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-expand-lg navbar-light border mt-2 static-top">
+                <a class="navbar-brand" href="#"><img class="header__logo-image" loading="lazy"
+                                                      src="https://www.marimekko.com/static/version1637055171/frontend/Improove/marimekko2/fi_FI/images/logo.svg"
+                                                      alt="" width="170" style="margin-bottom: 8px;"> <span style="margin-left: 5px; font-weight: lighter;">Swap</span></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Explore</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="h3 text-left">
+                        Now I wear
+                    </span>
+                    <span class="text-muted text-right">Until 30 November</span>
+
+
+                    <div th:each="currentItem : ${profile.currentItems}" class="row p-2">
+                        <div class="col-md-3">
+                            <img alt="Bootstrap Image Preview"
+                                 src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 th:text="${currentItem.item.name}">
+
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>
+                        Booked
+                    </h3>
+                    <div th:each="currentItem : ${profile.bookedItems}" class="row p-2">
+                        <div class="col-md-3">
+                            <img alt="Bootstrap Image Preview"
+                                 src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 th:text="${currentItem.item.name}">
+
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
