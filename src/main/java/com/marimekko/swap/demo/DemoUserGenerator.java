@@ -67,14 +67,11 @@ public class DemoUserGenerator {
         List<Schedule> schedules = new ArrayList<>();
         schedules.add(new Schedule(user, items.get(0), monthsFromNow(0)));
         schedules.add(new Schedule(user, items.get(1), monthsFromNow(0)));
-        schedules.add(new Schedule(user, items.get(2), monthsFromNow(0)));
-        schedules.add(new Schedule(user, items.get(3), monthsFromNow(1)));
-        schedules.add(new Schedule(fake, items.get(5), monthsFromNow(1)));
+        schedules.add(new Schedule(user, items.get(9), monthsFromNow(0)));
+        schedules.add(new Schedule(user, items.get(10), monthsFromNow(1)));
         schedules.add(new Schedule(fake, items.get(6), monthsFromNow(1)));
         schedules.add(new Schedule(fake, items.get(7), monthsFromNow(1)));
         schedules.add(new Schedule(fake, items.get(8), monthsFromNow(2)));
-        schedules.add(new Schedule(fake, items.get(9), monthsFromNow(2)));
-        schedules.add(new Schedule(fake, items.get(10), monthsFromNow(3)));
         scheduleRepository.saveAll(schedules);
         return schedules;
     }
