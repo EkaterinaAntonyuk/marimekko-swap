@@ -10,11 +10,12 @@ import java.time.format.DateTimeFormatter;
 @Component("viewUtil")
 public class ViewUtil {
     private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+
     public String toFirstDayOfMonth(Instant instant) {
         return YearMonth.from(instant.atZone(ZoneId.systemDefault())).atDay(1).format(formatter);
     }
 
-    public String a() {
-        return "a";
+    public String toMonth(Instant instant) {
+        return YearMonth.from(instant.atZone(ZoneId.systemDefault())).getMonth().toString();
     }
 }
