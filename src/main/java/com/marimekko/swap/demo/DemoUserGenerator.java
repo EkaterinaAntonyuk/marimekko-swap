@@ -48,6 +48,9 @@ public class DemoUserGenerator {
         items.add(new Item("Shoes8", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
         items.add(new Item("Shoes9", ItemType.ACCESSORIES, "39", user.getId(), user.getId() - 1));
         items.add(new Item("Bag10", ItemType.BAGS, "One size", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress31", ItemType.CLOTHING, "M", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress32", ItemType.CLOTHING, "XS", user.getId(), user.getId() - 1));
+        items.add(new Item("Dress33", ItemType.CLOTHING, "M", user.getId(), user.getId() - 1));
         items.add(new Item("Bag11", ItemType.BAGS, "One size", user.getId(), user.getId() - 1));
         items.add(new Item("Shoes12", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));
         items.add(new Item("Shoes13", ItemType.ACCESSORIES, "38", user.getId(), user.getId() - 1));

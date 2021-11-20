@@ -2,6 +2,7 @@ package com.marimekko.swap.repository;
 
 import com.marimekko.swap.dto.ItemAvailabilityDto;
 import com.marimekko.swap.model.Item;
+import com.marimekko.swap.model.ItemType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

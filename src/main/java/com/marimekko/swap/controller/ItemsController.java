@@ -29,10 +29,11 @@ public class ItemsController {
                 isAvailableNextMonth
         );
         model.addAttribute("filters", filters);
+        final Long user = (Long) httpSession.getAttribute("user");
         if (itemType == null && sizes == null && !isAvailableNextMonth) {
-            model.addAttribute("items", itemsService.getAllItems((Long) httpSession.getAttribute("user")));
+            model.addAttribute("items", itemsService.getAllItems(user));
         } else {
-            model.addAttribute("items", itemsService.getFilteredItems(itemType, sizes, isAvailableNextMonth));
+            model.addAttribute("items", itemsService.getFilteredItems(user, itemType, sizes, isAvailableNextMonth));
         }
         return "items";
     }
